@@ -35,13 +35,13 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer([4, 4, 4, 4]), 4)
 
     def test_strings(self):
-        self.assertEqual(max_integer("hello"), "o")
-        self.assertEqual(max_integer("Abdoulaye"), "y")
-        self.assertEqual(max_integer("AbdoulaYe"), "u")
+        self.assertEqual(max_integer("world"), "o")
+        self.assertEqual(max_integer("اها كدة كيف"), "y")
+        self.assertEqual(max_integer("اها كدة كيف"), "u")
         self.assertEqual(max_integer(['h', 'e', 'l', 'l', 'o']), "o")
 
     def test_mix(self):
-        mix = [1, 4, 5, "Abdoulaye", 24]
+        mix = [1, 4, 5, "اها كدة كيف", 24]
         with self.assertRaises(TypeError):
             max_integer(mix)
 
