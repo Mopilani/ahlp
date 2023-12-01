@@ -5,7 +5,10 @@
 
 
 class Rectangle:
-    """Representation of a rectangle"""
+    """Representation of a rectangle
+    
+    Makes it possible
+    """
 
     inst_num = 0
     print_s = "#"
