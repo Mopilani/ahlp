@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-"""Represent a node in a singly-linked list."""
+"""
+Represent a node in a singly-linked list.
+
+Represent a node in a singly-linked list.
+"""
 
 class Node:
     """
-    
-
     Attributes:
         __data (int): Data of the node.
         __next_node (Node): Next node in the linked list.
