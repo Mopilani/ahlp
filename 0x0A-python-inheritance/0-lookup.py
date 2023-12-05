@@ -6,3 +6,4 @@
 def lookup(obj):
     """ Return all methods of an object """
     return dir(obj)
+
