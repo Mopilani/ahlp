@@ -124,18 +124,18 @@ given"
              '_Rectangle__x': 15, '_Rectangle__y': 20, 'id': 98}
         self.assertEqual(r.__dict__, d)
 
+    def test_E_id_inherited(self):
+        '''Tests if id is inherited from Base.'''
+        Base._Base__nb_objects = 98
+        r = Rectangle(2, 4)
+        self.assertEqual(r.id, 99)
+
     def test_D_instantiation_keyword(self):
         '''Tests positional instantiation.'''
         r = Rectangle(100, 200, id=421, y=99, x=101)
         d = {'_Rectangle__height': 200, '_Rectangle__width': 100,
              '_Rectangle__x': 101, '_Rectangle__y': 99, 'id': 421}
         self.assertEqual(r.__dict__, d)
-
-    def test_E_id_inherited(self):
-        '''Tests if id is inherited from Base.'''
-        Base._Base__nb_objects = 98
-        r = Rectangle(2, 4)
-        self.assertEqual(r.id, 99)
 
     def test_F_properties(self):
         '''Tests property getters/setters.'''
@@ -154,12 +154,6 @@ given"
 
     # ----------------- Tests for #3 ------------------------
 
-    def invalid_types(self):
-        '''Returns tuple of types for validation.'''
-        t = (3.14, -1.1, float('inf'), float('-inf'), True, "str", (2,),
-             [4], {5}, {6: 7}, None)
-        return t
-
     def test_G_validate_type(self):
         '''Tests property validation.'''
         r = Rectangle(1, 2)
@@ -170,6 +164,12 @@ given"
                 with self.assertRaises(TypeError) as e:
                     setattr(r, attribute, invalid_type)
                 self.assertEqual(str(e.exception), s)
+
+    def invalid_types(self):
+        '''Returns tuple of types for validation.'''
+        t = (3.14, -1.1, float('inf'), float('-inf'), True, "str", (2,),
+             [4], {5}, {6: 7}, None)
+        return t
 
     def test_G_validate_value_negative_gt(self):
         '''Tests property validation.'''
@@ -358,14 +358,6 @@ given"
 
         # ----------------- Tests for #6 ------------------------
 
-    def test_K_str_no_args(self):
-        '''Tests __str__() method signature.'''
-        r = Rectangle(5, 2)
-        with self.assertRaises(TypeError) as e:
-            Rectangle.__str__()
-        s = "__str__() missing 1 required positional argument: 'self'"
-        self.assertEqual(str(e.exception), s)
-
     def test_K_str(self):
         '''Tests __str__() method return.'''
         r = Rectangle(5, 2)
@@ -384,6 +376,14 @@ given"
 
         r2 = Rectangle(5, 5, 1)
         self.assertEqual(str(r2), "[Rectangle] (1) 1/0 - 5/5")
+
+    def test_K_str_no_args(self):
+        '''Tests __str__() method signature.'''
+        r = Rectangle(5, 2)
+        with self.assertRaises(TypeError) as e:
+            Rectangle.__str__()
+        s = "__str__() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
 
         # ----------------- Tests for #8 & #9 ------------------------
     def test_L_update_no_args(self):
